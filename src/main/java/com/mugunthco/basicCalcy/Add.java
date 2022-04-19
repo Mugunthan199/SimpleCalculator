@@ -1,6 +1,9 @@
 package com.mugunthco.basicCalcy;
 
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.*;;
 
 /**
@@ -20,12 +23,31 @@ public class Add {
 		if(!numbers.isEmpty())
 		{
 		String num[] = splitFunction(numbers);
+		checkNegatives(num);
 		int sum = Stream.of(num).mapToInt(Integer::parseInt).sum();
 		return sum;
 		}
 		return 0;
 	}
 
+	/**
+	 * This method check for negative numbers in the array
+	 * @param num
+	 */
+	private static void checkNegatives(String[] num) {
+		List<Integer> intNumberList = Arrays.stream(num).map(Integer::parseInt).collect(Collectors.toList());
+		StringBuilder builder = new StringBuilder();
+		intNumberList.stream().filter(n->n<0).forEach(n->builder.append(n).append(" "));
+		if(!builder.toString().isEmpty())
+		{
+			throw new RuntimeException("negatives not allowed "+builder.toString());
+		}
+	}
+	/**
+	 * This method splits the numbers based on the delimiters provided
+	 * @param numbers
+	 * @return
+	 */
 	private static String[] splitFunction(String numbers) {
 		if(numbers.startsWith("//"))
 		{

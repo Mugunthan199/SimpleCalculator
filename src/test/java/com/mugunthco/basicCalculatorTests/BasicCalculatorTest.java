@@ -18,7 +18,7 @@ class BasicCalculatorTest {
 		Assertions.assertEquals(Add.add("7"),7);
 	}
 	@Test
-	void basicNumbersWithoutDelimitersTest() {
+	void basicCalculatorWithCommaDelimiterTest() {
 		Assertions.assertEquals(Add.add("1,4"),5);
 	}
 	@Test
@@ -26,7 +26,7 @@ class BasicCalculatorTest {
 		Assertions.assertEquals(Add.add("1,4,5,7"),17);
 	}
 	@Test
-	void basicNumbersWithNewLineDelimiterTest() {
+	void basicCalculatorWithNewLineDelimiterTest() {
 		Assertions.assertEquals(Add.add("1,4,5\n7"),17);
 	}
 	@Test
@@ -43,7 +43,27 @@ class BasicCalculatorTest {
 		assertTrue(thrown);
 	}
 	@Test
-	void basicNumbersWithDifferentDelimitersTest() {
+	void basicCalculatorWithDifferentDelimitersTest() {
 		Assertions.assertEquals(Add.add("//;\n1;2"),3);
+	}
+	@Test
+	void basicCalculatorWithNegativeNumbersTest() {
+		boolean isNegativePresent = false;
+		try
+		{
+		Assertions.assertEquals(Add.add("1,-2,4,-6"),17);
+		}
+		catch(RuntimeException e)
+		{
+			if(e.getMessage().contains("negatives not allowed") && e.getMessage().contains("-2 -6"))
+			{
+				isNegativePresent = true;
+			}
+			else
+			{
+				isNegativePresent = false;
+			}
+		}
+		assertTrue(isNegativePresent);
 	}
 }
