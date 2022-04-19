@@ -26,7 +26,7 @@ class BasicCalculatorTest {
 		Assertions.assertEquals(Add.add("1,4,5,7"),17);
 	}
 	@Test
-	void basicTwoNumbersWithNewLineDelimiterTest() {
+	void basicNumbersWithNewLineDelimiterTest() {
 		Assertions.assertEquals(Add.add("1,4,5\n7"),17);
 	}
 	@Test
@@ -41,5 +41,9 @@ class BasicCalculatorTest {
 			thrown = true;
 		}
 		assertTrue(thrown);
+	}
+	@Test
+	void basicNumbersWithDifferentDelimitersTest() {
+		Assertions.assertEquals(Add.add("//;\n1;2"),3);
 	}
 }
