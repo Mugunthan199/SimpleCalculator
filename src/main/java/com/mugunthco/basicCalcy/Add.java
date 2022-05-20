@@ -14,21 +14,22 @@ import java.util.regex.*;;
 public class Add {
 	
 	/**
-	 * This method returns addition of n number of values passed as String
+	 * This method returns addition of n number of integers passed as String
 	 * @param numbers
 	 * @return
 	 */
 	public static int add(String numbers)
 	{
-		if(!numbers.isEmpty())
+		if(numbers.isEmpty())
 		{
+			return 0;
+		}
 		String num[] = splitFunction(numbers);
 		checkNegatives(num);
 		int sum = Stream.of(num).mapToInt(Integer::parseInt).sum();
 		return sum;
 		}
-		return 0;
-	}
+	
 
 	/**
 	 * This method check for negative numbers in the array
